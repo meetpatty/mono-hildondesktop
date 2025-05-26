@@ -1,0 +1,20 @@
+Source: mono-hildondesktop
+Section: libs
+Priority: optional
+Maintainer: 
+Build-Depends: debhelper (>= 4.0.0), pkg-config, hildon-desktop-dev, libhildondesktop-dev
+Standards-Version: 3.6.1
+
+Package: mono-hildondesktop
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, mono-runtime, gtk-sharp2 (>= 2.4.3), hildon-desktop-mono-loader
+Description: CLI bindings for libhildondesktop
+ CLI binding for libhildondesktop
+
+Package: hildon-desktop-mono-loader
+Section: libs
+Architecture: any
+Depends: hildon-desktop, mono-runtime, ${misc:Depends}
+Description: Hildon Desktop Mono Plugin Loader
+ Plugin Loader for Hildon Desktop for loading mono plugins

@@ -1,0 +1,9 @@
+prefix=@prefix@
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+
+Name: LibHildonDesktop#
+Description: LibHildonDesktop# - LibHildonDesktop bindings for Mono
+Version: @VERSION@
+Requires: gtk-sharp-2.0
+Libs: -r:${prefix}/lib/mono/libhildondesktop-sharp/libhildondesktop-sharp.dll

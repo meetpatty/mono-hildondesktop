@@ -1,0 +1,586 @@
+<?xml version="1.0"?>
+<api>
+  <!--
+
+        This file was automatically generated.
+        Please DO NOT MODIFY THIS FILE, modify .metadata files instead.
+
+-->
+  <namespace name="LibHildonDesktop" library="libhildondesktop">
+    <enum name="HildonDesktopHomeItemResizeType" cname="HildonDesktopHomeItemResizeType" type="enum">
+      <member cname="HILDON_DESKTOP_HOME_ITEM_RESIZE_NONE" name="None" />
+      <member cname="HILDON_DESKTOP_HOME_ITEM_RESIZE_VERTICAL" name="Vertical" />
+      <member cname="HILDON_DESKTOP_HOME_ITEM_RESIZE_HORIZONTAL" name="Horizontal" />
+      <member cname="HILDON_DESKTOP_HOME_ITEM_RESIZE_BOTH" name="Both" />
+    </enum>
+    <enum name="HildonDesktopPanelWindowOrientation" cname="HildonDesktopPanelWindowOrientation" type="flags">
+      <member cname="HILDON_DESKTOP_PANEL_WINDOW_ORIENTATION_TOP" name="Top" value="1 &lt;&lt; 0" />
+      <member cname="HILDON_DESKTOP_PANEL_WINDOW_ORIENTATION_LEFT" name="Left" value="1 &lt;&lt; 1" />
+      <member cname="HILDON_DESKTOP_PANEL_WINDOW_ORIENTATION_RIGHT" name="Right" value="1 &lt;&lt; 2" />
+      <member cname="HILDON_DESKTOP_PANEL_WINDOW_ORIENTATION_BOTTOM" name="Bottom" value="1 &lt;&lt; 3" />
+    </enum>
+    <enum name="HildonDesktopPopupWindowDirection" cname="HildonDesktopPopupWindowDirection" type="enum">
+      <member cname="HD_POPUP_WINDOW_DIRECTION_LEFT_TOP" name="LeftTop" />
+      <member cname="HD_POPUP_WINDOW_DIRECTION_RIGHT_BOTTOM" name="RightBottom" />
+    </enum>
+    <callback name="HDPopupWindowPositionFunc" cname="HDPopupWindowPositionFunc">
+      <return-type type="void" />
+      <parameters>
+        <parameter type="HildonDesktopPopupWindow*" name="window" />
+        <parameter type="gint*" name="x" />
+        <parameter type="gint*" name="y" />
+        <parameter type="gpointer" name="user_data" />
+      </parameters>
+    </callback>
+    <callback name="HildonDesktopItemSettingsDialog" cname="HildonDesktopItemSettingsDialog">
+      <return-type type="GtkWidget*" />
+      <parameters>
+        <parameter type="GModule*" name="module" />
+      </parameters>
+    </callback>
+    <interface name="HildonDesktopContainer" cname="HildonDesktopContainer">
+      <virtual_method name="GetChildren" cname="get_children">
+        <return-type type="GList*" />
+        <parameters>
+          <parameter type="HildonDesktopContainer*" name="container" />
+        </parameters>
+      </virtual_method>
+      <virtual_method name="Remove" cname="remove">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="HildonDesktopContainer*" name="container" />
+          <parameter type="GtkWidget*" name="widget" />
+        </parameters>
+      </virtual_method>
+      <method name="GetChildren" cname="hildon_desktop_container_get_children">
+        <return-type type="GList*" />
+      </method>
+      <method name="GetType" cname="hildon_desktop_container_get_type" shared="true">
+        <return-type type="GType" />
+      </method>
+      <method name="Remove" cname="hildon_desktop_container_remove">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="GtkWidget*" name="widget" />
+        </parameters>
+      </method>
+    </interface>
+    <object name="HildonDesktopHomeItem" cname="HildonDesktopHomeItem" parent="HildonDesktopItem">
+      <method name="GetResizeType" cname="hildon_desktop_home_item_get_resize_type">
+        <return-type type="HildonDesktopHomeItemResizeType" />
+      </method>
+      <method name="GetSettingsMenuItem" cname="hildon_desktop_home_item_get_settings_menu_item">
+        <return-type type="GtkWidget*" />
+      </method>
+      <method name="GetType" cname="hildon_desktop_home_item_get_type" shared="true">
+        <return-type type="GType" />
+      </method>
+      <method name="Lower" cname="hildon_desktop_home_item_lower">
+        <return-type type="void" />
+      </method>
+      <constructor cname="hildon_desktop_home_item_new" />
+      <method name="Raise" cname="hildon_desktop_home_item_raise">
+        <return-type type="void" />
+      </method>
+      <method name="SetIsBackground" cname="hildon_desktop_home_item_set_is_background">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="gboolean" name="is_background" />
+        </parameters>
+      </method>
+      <method name="SetResizeType" cname="hildon_desktop_home_item_set_resize_type">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="HildonDesktopHomeItemResizeType" name="resize_type" />
+        </parameters>
+      </method>
+    </object>
+    <object name="HildonDesktopItem" cname="HildonDesktopItem" parent="GtkBin">
+      <field name="Id" cname="id" type="gchar*" />
+      <field name="Name" cname="name" type="gchar*" />
+      <field name="Mandatory" cname="mandatory" type="gboolean" />
+      <field name="Geometry" cname="geometry" type="GdkRectangle" />
+      <method name="FindById" cname="hildon_desktop_item_find_by_id">
+        <return-type type="gint" />
+        <parameters>
+          <parameter type="const-gchar*" name="id" />
+        </parameters>
+      </method>
+      <method name="GetId" cname="hildon_desktop_item_get_id">
+        <return-type type="const-gchar*" />
+      </method>
+      <method name="GetName" cname="hildon_desktop_item_get_name">
+        <return-type type="const-gchar*" />
+      </method>
+      <method name="GetResource" cname="hildon_desktop_item_get_resource">
+        <return-type type="const-gchar*" />
+      </method>
+      <method name="GetType" cname="hildon_desktop_item_get_type" shared="true">
+        <return-type type="GType" />
+      </method>
+      <method name="GetWidget" cname="hildon_desktop_item_get_widget">
+        <return-type type="GtkWidget*" />
+      </method>
+    </object>
+    <object name="HildonDesktopMultiscreen" cname="HildonDesktopMultiscreen" parent="GObject">
+      <field name="Screens" cname="screens" type="gint" />
+      <field name="Monitors" cname="monitors" type="gint*" />
+      <field name="Geometries" cname="geometries" type="GdkRectangle**" />
+      <field name="Initialized" cname="initialized" type="gboolean" />
+    </object>
+    <object name="HildonDesktopNotificationManager" cname="HildonDesktopNotificationManager" parent="GtkListStore">
+      <field name="Priv" cname="priv" type="HildonDesktopNotificationManagerPrivate*" />
+      <method name="CallAction" cname="hildon_desktop_notification_manager_call_action">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="guint" name="id" />
+          <parameter type="const-gchar*" name="action_id" />
+        </parameters>
+      </method>
+      <method name="CallDbusCallback" cname="hildon_desktop_notification_manager_call_dbus_callback">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="const-gchar*" name="dbus_call" />
+        </parameters>
+      </method>
+      <method name="CloseAll" cname="hildon_desktop_notification_manager_close_all">
+        <return-type type="void" />
+      </method>
+      <method name="CloseNotification" cname="hildon_desktop_notification_manager_close_notification">
+        <return-type type="gboolean" />
+        <parameters>
+          <parameter type="guint" name="id" />
+          <parameter type="GError**" name="error" />
+        </parameters>
+      </method>
+      <method name="FindById" cname="hildon_desktop_notification_manager_find_by_id">
+        <return-type type="gboolean" />
+        <parameters>
+          <parameter type="guint" name="id" />
+          <parameter type="GtkTreeIter*" name="return_iter" />
+        </parameters>
+      </method>
+      <method name="GetCapabilities" cname="hildon_desktop_notification_manager_get_capabilities">
+        <return-type type="gboolean" />
+        <parameters>
+          <parameter type="gchar***" name="caps" />
+        </parameters>
+      </method>
+      <method name="GetServerInfo" cname="hildon_desktop_notification_manager_get_server_info">
+        <return-type type="gboolean" />
+        <parameters>
+          <parameter type="gchar**" name="out_name" />
+          <parameter type="gchar**" name="out_vendor" />
+          <parameter type="gchar**" name="out_version/*" />
+          <parameter type="gchar**" name="out_spec_ver*/" />
+        </parameters>
+      </method>
+      <method name="GetSingleton" cname="hildon_desktop_notification_manager_get_singleton" shared="true">
+        <return-type type="GtkListStore*" />
+      </method>
+      <method name="GetType" cname="hildon_desktop_notification_manager_get_type" shared="true">
+        <return-type type="GType" />
+      </method>
+      <method name="Notify" cname="hildon_desktop_notification_manager_notify">
+        <return-type type="gboolean" />
+        <parameters>
+          <parameter type="const-gchar*" name="app_name" />
+          <parameter type="guint" name="id" />
+          <parameter type="const-gchar*" name="icon" />
+          <parameter type="const-gchar*" name="summary" />
+          <parameter type="const-gchar*" name="body" />
+          <parameter type="gchar**" name="actions" />
+          <parameter type="GHashTable*" name="hints" />
+          <parameter type="gint" name="timeout" />
+          <parameter type="DBusGMethodInvocation*" name="context" />
+        </parameters>
+      </method>
+      <method name="SystemNoteDialog" cname="hildon_desktop_notification_manager_system_note_dialog">
+        <return-type type="gboolean" />
+        <parameters>
+          <parameter type="const-gchar*" name="message" />
+          <parameter type="guint" name="type" />
+          <parameter type="const-gchar*" name="label" />
+          <parameter type="DBusGMethodInvocation*" name="context" />
+        </parameters>
+      </method>
+      <method name="SystemNoteInfoprint" cname="hildon_desktop_notification_manager_system_note_infoprint">
+        <return-type type="gboolean" />
+        <parameters>
+          <parameter type="const-gchar*" name="message" />
+          <parameter type="DBusGMethodInvocation*" name="context" />
+        </parameters>
+      </method>
+    </object>
+    <object name="HildonDesktopPanel" cname="HildonDesktopPanel" parent="GtkBox">
+      <field name="Orient" cname="orient" type="GtkOrientation" />
+      <field name="ItemWidth" cname="item_width" type="gint" />
+      <field name="ItemHeight" cname="item_height" type="gint" />
+      <field name="PackStart" cname="pack_start" type="gboolean" />
+      <method name="AddButton" cname="hildon_desktop_panel_add_button">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="GtkWidget*" name="widget" />
+        </parameters>
+      </method>
+      <method name="Flip" cname="hildon_desktop_panel_flip">
+        <return-type type="void" />
+      </method>
+      <method name="GetOrientation" cname="hildon_desktop_panel_get_orientation">
+        <return-type type="GtkOrientation" />
+      </method>
+      <method name="GetType" cname="hildon_desktop_panel_get_type" shared="true">
+        <return-type type="GType" />
+      </method>
+      <method name="RefreshItemsStatus" cname="hildon_desktop_panel_refresh_items_status">
+        <return-type type="void" />
+      </method>
+      <method name="SetOrientation" cname="hildon_desktop_panel_set_orientation">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="GtkOrientation" name="orientation" />
+        </parameters>
+      </method>
+    </object>
+    <object name="HildonDesktopPanelExpandable" cname="HildonDesktopPanelExpandable" parent="HildonDesktopPanel">
+      <field name="Priv" cname="priv" type="HildonDesktopPanelExpandablePrivate*" />
+      <method name="GetExtension" cname="hildon_desktop_panel_expandable_get_extension">
+        <return-type type="GtkWidget*" />
+      </method>
+      <method name="GetType" cname="hildon_desktop_panel_expandable_get_type" shared="true">
+        <return-type type="GType" />
+      </method>
+    </object>
+    <object name="HildonDesktopPanelItem" cname="HildonDesktopPanelItem" parent="HildonDesktopItem">
+      <field name="Position" cname="position" type="gint" />
+      <field name="Orientation" cname="orientation" type="GtkOrientation" />
+      <method name="GetPosition" cname="hildon_desktop_panel_item_get_position">
+        <return-type type="gint" />
+      </method>
+      <method name="GetType" cname="hildon_desktop_panel_item_get_type" shared="true">
+        <return-type type="GType" />
+      </method>
+    </object>
+    <object name="HildonDesktopPanelWindow" cname="HildonDesktopPanelWindow" parent="HildonDesktopWindow">
+      <field name="Panel" cname="panel" type="GtkWidget*" />
+      <field name="Priv" cname="priv" type="HildonDesktopPanelWindowPrivate*" />
+      <method name="GetType" cname="hildon_desktop_panel_window_get_type" shared="true">
+        <return-type type="GType" />
+      </method>
+      <constructor cname="hildon_desktop_panel_window_new" />
+      <method name="SetMultiscreenHandler" cname="hildon_desktop_panel_window_set_multiscreen_handler">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="HildonDesktopMultiscreen*" name="ms" />
+        </parameters>
+      </method>
+    </object>
+    <object name="HildonDesktopPanelWindowComposite" cname="HildonDesktopPanelWindowComposite" parent="HildonDesktopPanelWindow">
+      <field name="Priv" cname="priv" type="HildonDesktopPanelWindowCompositePrivate*" />
+      <method name="GetType" cname="hildon_desktop_panel_window_composite_get_type" shared="true">
+        <return-type type="GType" />
+      </method>
+    </object>
+    <object name="HildonDesktopPanelWindowDialog" cname="HildonDesktopPanelWindowDialog" parent="HildonDesktopPanelWindowComposite">
+      <field name="Priv" cname="priv" type="HildonDesktopPanelWindowDialogPrivate*" />
+      <method name="GetType" cname="hildon_desktop_panel_window_dialog_get_type" shared="true">
+        <return-type type="GType" />
+      </method>
+      <constructor cname="hildon_desktop_panel_window_dialog_new" />
+    </object>
+    <object name="HildonDesktopPopupMenu" cname="HildonDesktopPopupMenu" parent="GtkVBox">
+      <field name="Priv" cname="priv" type="HildonDesktopPopupMenuPrivate*" />
+      <method name="ActivateItem" cname="hildon_desktop_popup_menu_activate_item">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="GtkMenuItem*" name="item" />
+        </parameters>
+      </method>
+      <method name="AddItem" cname="hildon_desktop_popup_menu_add_item">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="GtkMenuItem*" name="item" />
+        </parameters>
+      </method>
+      <method name="DeselectItem" cname="hildon_desktop_popup_menu_deselect_item">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="GtkMenuItem*" name="item" />
+        </parameters>
+      </method>
+      <method name="GetAdjustment" cname="hildon_desktop_popup_menu_get_adjustment">
+        <return-type type="GtkAdjustment*" />
+      </method>
+      <method name="GetChildren" cname="hildon_desktop_popup_menu_get_children">
+        <return-type type="GList*" />
+      </method>
+      <method name="GetScrollButtonDown" cname="hildon_desktop_popup_menu_get_scroll_button_down">
+        <return-type type="const-GtkWidget*" />
+      </method>
+      <method name="GetScrollButtonUp" cname="hildon_desktop_popup_menu_get_scroll_button_up">
+        <return-type type="const-GtkWidget*" />
+      </method>
+      <method name="GetSelectedItem" cname="hildon_desktop_popup_menu_get_selected_item">
+        <return-type type="GtkMenuItem*" />
+      </method>
+      <method name="GetType" cname="hildon_desktop_popup_menu_get_type" shared="true">
+        <return-type type="GType" />
+      </method>
+      <method name="ParentSize" cname="hildon_desktop_popup_menu_parent_size">
+        <return-type type="void" />
+      </method>
+      <method name="RemoveItem" cname="hildon_desktop_popup_menu_remove_item">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="GtkMenuItem*" name="item" />
+        </parameters>
+      </method>
+      <method name="ReplaceItems" cname="hildon_desktop_popup_menu_replace_items">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="GList*" name="items" />
+        </parameters>
+      </method>
+      <method name="ScrollToSelected" cname="hildon_desktop_popup_menu_scroll_to_selected">
+        <return-type type="void" />
+      </method>
+      <method name="SelectFirstItem" cname="hildon_desktop_popup_menu_select_first_item">
+        <return-type type="void" />
+      </method>
+      <method name="SelectItem" cname="hildon_desktop_popup_menu_select_item">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="GtkMenuItem*" name="item" />
+        </parameters>
+      </method>
+      <method name="SelectLastItem" cname="hildon_desktop_popup_menu_select_last_item">
+        <return-type type="void" />
+      </method>
+      <method name="SelectNextItem" cname="hildon_desktop_popup_menu_select_next_item">
+        <return-type type="void" />
+      </method>
+      <method name="SelectPrevItem" cname="hildon_desktop_popup_menu_select_prev_item">
+        <return-type type="void" />
+      </method>
+    </object>
+    <object name="HildonDesktopPopupWindow" cname="HildonDesktopPopupWindow" parent="GtkWindow">
+      <field name="Priv" cname="priv" type="HildonDesktopPopupWindowPrivate*" />
+      <method name="AttachWidget" cname="hildon_desktop_popup_window_attach_widget">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="GtkWidget*" name="widget" />
+        </parameters>
+      </method>
+      <method name="GetGrabbedPane" cname="hildon_desktop_popup_window_get_grabbed_pane">
+        <return-type type="GtkWidget*" />
+      </method>
+      <method name="GetPane" cname="hildon_desktop_popup_window_get_pane">
+        <return-type type="GtkWidget*" />
+        <parameters>
+          <parameter type="gint" name="pane" />
+        </parameters>
+      </method>
+      <method name="GetType" cname="hildon_desktop_popup_window_get_type" shared="true">
+        <return-type type="GType" />
+      </method>
+      <method name="JumpToPane" cname="hildon_desktop_popup_window_jump_to_pane">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="gint" name="pane" />
+        </parameters>
+      </method>
+      <constructor cname="hildon_desktop_popup_window_new">
+        <parameters>
+          <parameter type="guint" name="n_panes" />
+          <parameter type="GtkOrientation" name="orientation" />
+          <parameter type="HildonDesktopPopupWindowDirection" name="direction" />
+        </parameters>
+      </constructor>
+      <method name="Popdown" cname="hildon_desktop_popup_window_popdown">
+        <return-type type="void" />
+      </method>
+      <method name="Popup" cname="hildon_desktop_popup_window_popup">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="HDPopupWindowPositionFunc" name="func" />
+          <parameter type="gpointer" name="func_data" />
+          <parameter type="guint32" name="activate_time" />
+        </parameters>
+      </method>
+    </object>
+    <object name="HildonDesktopToggleButton" cname="HildonDesktopToggleButton" parent="GtkToggleButton">
+      <field name="Priv" cname="priv" type="HildonDesktopToggleButtonPrivate*" />
+      <method name="GetType" cname="hildon_desktop_toggle_button_get_type" shared="true">
+        <return-type type="GType" />
+      </method>
+      <constructor cname="hildon_desktop_toggle_button_new" />
+    </object>
+    <object name="HildonDesktopWindow" cname="HildonDesktopWindow" parent="GtkWindow">
+      <field name="Priv" cname="priv" type="HildonDesktopWindowPrivate*" />
+      <field name="Container" cname="container" type="GtkContainer*" />
+      <method name="GetType" cname="hildon_desktop_window_get_type" shared="true">
+        <return-type type="GType" />
+      </method>
+      <method name="SetFocus" cname="hildon_desktop_window_set_focus">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="gboolean" name="focus" />
+        </parameters>
+      </method>
+      <method name="SetSensitive" cname="hildon_desktop_window_set_sensitive">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="gboolean" name="sensitive" />
+        </parameters>
+      </method>
+    </object>
+    <object name="HildonHomeArea" cname="HildonHomeArea">
+      <method name="GetLayoutChanged" cname="hildon_home_area_get_layout_changed">
+        <return-type type="gboolean" />
+      </method>
+      <method name="GetLayoutMode" cname="hildon_home_area_get_layout_mode">
+        <return-type type="gboolean" />
+      </method>
+      <method name="GetOverlaps" cname="hildon_home_area_get_overlaps">
+        <return-type type="gboolean" />
+      </method>
+      <method name="GetType" cname="hildon_home_area_get_type" shared="true">
+        <return-type type="GType" />
+      </method>
+      <method name="LoadConfiguration" cname="hildon_home_area_load_configuration">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="const-gchar*" name="filename" />
+          <parameter type="GError**" name="error" />
+        </parameters>
+      </method>
+      <method name="Move" cname="hildon_home_area_move">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="GtkWidget*" name="child" />
+          <parameter type="gint" name="x" />
+          <parameter type="gint" name="y" />
+        </parameters>
+      </method>
+      <constructor cname="hildon_home_area_new" />
+      <method name="Put" cname="hildon_home_area_put">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="GtkWidget*" name="child" />
+          <parameter type="gint" name="x" />
+          <parameter type="gint" name="y" />
+          <parameter type="gint" name="stack_index" />
+        </parameters>
+      </method>
+      <method name="SaveConfiguration" cname="hildon_home_area_save_configuration">
+        <return-type type="gint" />
+        <parameters>
+          <parameter type="const-gchar*" name="filename" />
+          <parameter type="GError**" name="error" />
+        </parameters>
+      </method>
+      <method name="SetLayoutMode" cname="hildon_home_area_set_layout_mode">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="gboolean" name="layout_mode" />
+        </parameters>
+      </method>
+    </object>
+    <object name="HildonHomeTitlebar" cname="HildonHomeTitlebar" parent="GtkEventBox">
+      <field name="Priv" cname="priv" type="HildonHomeTitlebarPrivate*" />
+      <method name="GetType" cname="hildon_home_titlebar_get_type" shared="true">
+        <return-type type="GType" />
+      </method>
+      <constructor cname="hildon_home_titlebar_new" />
+      <method name="SetMenu" cname="hildon_home_titlebar_set_menu">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="GtkWidget*" name="menu" />
+        </parameters>
+      </method>
+      <method name="SetTitle" cname="hildon_home_titlebar_set_title">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="const-gchar*" name="title" />
+        </parameters>
+      </method>
+      <method name="ToggleMenu" cname="hildon_home_titlebar_toggle_menu">
+        <return-type type="void" />
+      </method>
+    </object>
+    <object name="HildonHomeWindow" cname="HildonHomeWindow" parent="HildonDesktopWindow">
+      <field name="Priv" cname="priv" type="HildonHomeWindowPrivate*" />
+      <method name="GetMenu" cname="hildon_home_window_get_menu">
+        <return-type type="GtkWidget*" />
+      </method>
+      <method name="GetType" cname="hildon_home_window_get_type" shared="true">
+        <return-type type="GType" />
+      </method>
+      <constructor cname="hildon_home_window_new" />
+      <method name="SetMenu" cname="hildon_home_window_set_menu">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="GtkMenu*" name="menu" />
+        </parameters>
+      </method>
+      <method name="ToggleMenu" cname="hildon_home_window_toggle_menu">
+        <return-type type="void" />
+      </method>
+    </object>
+    <object name="HildonThumbMenuItem" cname="HildonThumbMenuItem" parent="GtkImageMenuItem">
+      <method name="GetType" cname="hildon_thumb_menu_item_get_type" shared="true">
+        <return-type type="GType" />
+      </method>
+      <constructor cname="hildon_thumb_menu_item_new" />
+      <constructor cname="hildon_thumb_menu_item_new_with_labels">
+        <parameters>
+          <parameter type="const-gchar*" name="label" />
+          <parameter type="const-gchar*" name="thumb_label" />
+          <parameter type="const-gchar*" name="comment" />
+        </parameters>
+      </constructor>
+      <constructor cname="hildon_thumb_menu_item_new_with_mnemonic">
+        <parameters>
+          <parameter type="const-gchar*" name="label" />
+          <parameter type="const-gchar*" name="thumb_label" />
+          <parameter type="const-gchar*" name="comment" />
+        </parameters>
+      </constructor>
+      <method name="SetImages" cname="hildon_thumb_menu_item_set_images">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="GtkWidget*" name="image" />
+          <parameter type="GtkWidget*" name="thumb_image" />
+        </parameters>
+      </method>
+    </object>
+    <object name="HomeItem" cname="HomeItem" parent="HildonDesktopHomeItem">
+      <method name="GetType" cname="home_item_get_type" shared="true">
+        <return-type type="GType" />
+      </method>
+      <method name="SetResizeType" cname="home_item_set_resize_type">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="HildonDesktopHomeItemResizeType" name="resize_type" />
+        </parameters>
+      </method>
+    </object>
+    <object name="StatusbarItem" cname="StatusbarItem" parent="HildonDesktopPanelItem">
+      <field name="Window" cname="window" type="GtkWindow*" />
+      <field name="Vbox" cname="vbox" type="GtkVBox*" />
+      <field name="Position" cname="position" type="gint" />
+      <field name="Condition" cname="condition" type="gboolean" />
+      <method name="GetType" cname="statusbar_item_get_type" shared="true">
+        <return-type type="GType" />
+      </method>
+    </object>
+    <object name="TaskNavigatorItem" cname="TaskNavigatorItem" parent="HildonDesktopPanelItem">
+      <field name="Menu" cname="menu" type="GtkMenu*" />
+      <field name="Mandatory" cname="mandatory" type="gboolean" />
+      <method name="GetType" cname="tasknavigator_item_get_type" shared="true">
+        <return-type type="GType" />
+      </method>
+    </object>
+    <struct name="DesktopWindowData" cname="DesktopWindowData" opaque="true" />
+  </namespace>
+</api>

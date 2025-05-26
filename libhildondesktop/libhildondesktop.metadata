@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<metadata>
+	<attr path="/api/namespace/object[@cname='HildonStatusBarItem']" name="parent">StatusbarItem</attr>
+	<attr path="/api/namespace/object[@cname='HildonHomeArea']" name="parent">GtkContainer</attr>
+</metadata>

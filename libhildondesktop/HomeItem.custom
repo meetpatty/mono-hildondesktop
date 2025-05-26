@@ -1,0 +1,32 @@
+
+		protected Gtk.MenuItem settingsMenuItem;
+
+		public IntPtr SettingsMenuItemHandle {
+			get {
+				return settingsMenuItem != null ? settingsMenuItem.Handle : IntPtr.Zero;
+			}
+		}
+
+		[GLib.Signal("background")]
+		public event System.EventHandler Background {
+			add {
+				GLib.Signal sig = GLib.Signal.Lookup (this, "background");
+				sig.AddDelegate (value);
+			}
+			remove {
+				GLib.Signal sig = GLib.Signal.Lookup (this, "background");
+				sig.RemoveDelegate (value);
+			}
+		}
+
+		[GLib.Signal("foreground")]
+		public event System.EventHandler Foreground {
+			add {
+				GLib.Signal sig = GLib.Signal.Lookup (this, "foreground");
+				sig.AddDelegate (value);
+			}
+			remove {
+				GLib.Signal sig = GLib.Signal.Lookup (this, "foreground");
+				sig.RemoveDelegate (value);
+			}
+		}

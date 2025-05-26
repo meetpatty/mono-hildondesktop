@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<gapi-parser-input>
+  <api filename="libhildondesktop-api.raw">
+    <library name="libhildondesktop">
+      <namespace name="LibHildonDesktop">
+        <dir>libhildondesktop</dir>
+      </namespace>
+    </library>
+  </api>
+</gapi-parser-input>
