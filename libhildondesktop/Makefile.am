@@ -40,7 +40,7 @@ BINDING_LIBHILDONDESKTOP_IN = \
 
 sources =
 
-build_sources = AssemblyInfo.cs $(sources)
+build_sources = AssemblyInfo.cs AppDomainHelper.cs $(sources)
 
 customs = HomeItem.custom
 

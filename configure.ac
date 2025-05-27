@@ -120,6 +120,7 @@ libhildondesktop/libhildondesktop-sharp.pc
 libhildondesktop/Makefile
 libhildondesktop/AssemblyInfo.cs
 loader/Makefile
+loader/hd-plugin-loader-mono.h
 ])
 
 AC_OUTPUT

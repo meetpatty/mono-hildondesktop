@@ -5,5 +5,5 @@ set -x
 libtoolize --automake --copy
 aclocal-1.7
 autoconf
-autoheader
+#autoheader
 automake-1.7 --add-missing --foreign --force --copy

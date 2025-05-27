@@ -2,6 +2,8 @@
 #include <config.h>
 #endif
 
+#include <string.h>
+
 #include <mono/jit/jit.h>
 #include <mono/metadata/assembly.h>
 #include <mono/metadata/mono-config.h>
@@ -21,7 +23,6 @@ G_DEFINE_TYPE (HDPluginLoaderMono, hd_plugin_loader_mono, HD_TYPE_PLUGIN_LOADER)
 #define CS_PLUGIN_FACTORY_METHOD_FQN CS_PLUGIN_FACTORY_CLASS "." CS_PLUGIN_FACTORY_METHOD
 
 static MonoDomain *domain;
-MonoAssembly *assembly;
 
 struct _HDPluginLoaderMonoPrivate 
 {
@@ -55,10 +56,63 @@ hd_plugin_loader_mono_plugin_settings(GtkWidget *item, GtkWidget *top_level, Mon
   return NULL;
 }
 
+static MonoAssembly*
+hd_plugin_loader_mono_get_mono_assembly_by_name(const char *assembly_name)
+{
+    MonoAssembly *result = NULL;
+    const char *image_name;
+
+    void get_assembly(MonoAssembly *assembly, void *user_data) {
+        image_name = mono_image_get_name(mono_assembly_get_image(assembly));
+        if (strcmp(image_name, assembly_name) == 0) {
+            result = assembly;
+        }
+    }
+
+    mono_assembly_foreach((GFunc)get_assembly, NULL);
+    return result;
+}
+
 static void 
 hd_plugin_loader_mono_destroy_plugin (GtkObject *object, gpointer user_data)
 {
   // Can't unload assembly from runtime, do we need separate app domains?
+}
+
+static void 
+hd_plugin_loader_mono_set_appdomain_config_file (MonoDomain *domain, const char *path)
+{
+  MonoAssembly *assembly;
+  MonoImage *image;
+  MonoClass *klass;
+  MonoMethod *method;
+  MonoString *mono_path;
+  void *args[1];
+
+  assembly = hd_plugin_loader_mono_get_mono_assembly_by_name("libhildondesktop-sharp");
+  if (!assembly) {
+    g_warning ("Failed to find assembly libhildondesktop-sharp\n");
+    return;
+  }
+
+  image = mono_assembly_get_image(assembly);
+
+  klass = mono_class_from_name(image, "LibHildonDesktop", "AppDomainHelper");
+  if (!klass) {
+    g_warning ("Failed to find class LibHildonDesktop.AppDomainHelper\n");
+    return;
+  }
+
+  method = mono_class_get_method_from_name(klass, "SetAppDomainConfigurationFile", 1);
+  if (!method) {
+    g_warning ("Failed to find method SetAppDomainConfigurationFile\n");
+    return;
+  }
+
+  mono_path = mono_string_new(domain, path);
+  args[0] = mono_path;
+
+  mono_runtime_invoke(method, NULL, args, NULL);
 }
 
 static GList * 
@@ -71,6 +125,7 @@ hd_plugin_loader_mono_open_module (HDPluginLoaderMono *loader,
   GError *keyfile_error = NULL;
   gchar *module_file = NULL;
   gchar *module_name = NULL;
+  MonoAssembly *assembly = NULL;
   MonoMethod *method = NULL;
 
   g_return_val_if_fail (HD_IS_PLUGIN_LOADER_MONO (loader), NULL);
@@ -124,6 +179,9 @@ hd_plugin_loader_mono_open_module (HDPluginLoaderMono *loader,
 
   if (method != NULL)
   {
+    // Ensure the current AppDomain's ConfigurationFile is set to avoid errors in certain managed calls.
+    hd_plugin_loader_mono_set_appdomain_config_file(domain, LOADER_LIB_DIR "/monoloader.config");
+
     MonoObject *exc = NULL;
     MonoObject *result = mono_runtime_invoke(method, NULL, NULL, &exc);
 
