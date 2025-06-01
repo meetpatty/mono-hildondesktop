@@ -9,6 +9,7 @@
 #include <mono/metadata/mono-config.h>
 
 #include <libhildondesktop/hildon-desktop-plugin.h>
+#include <libhildondesktop/home-item.h>
 
 #include "hd-plugin-loader-mono.h"
 #include <hildon-desktop/hd-config.h>
@@ -209,11 +210,14 @@ hd_plugin_loader_mono_open_module (HDPluginLoaderMono *loader,
                               "destroy", 
                               G_CALLBACK (hd_plugin_loader_mono_destroy_plugin), 
                               NULL);
-
-          g_signal_connect (G_OBJECT (object), 
+          
+          if (HOME_IS_ITEM(object))
+          {
+            g_signal_connect (G_OBJECT (object), 
                               "settings", 
                               G_CALLBACK (hd_plugin_loader_mono_plugin_settings), 
                               plugin_obj);
+          }
 
           objects = g_list_append (objects, object);
         }
