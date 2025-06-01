@@ -7,7 +7,7 @@ Standards-Version: 3.6.1
 
 Package: mono-hildondesktop
 Section: libs
-Architecture: any
+Architecture: all
 Depends: ${shlibs:Depends}, ${misc:Depends}, mono-runtime, gtk-sharp2 (>= 2.4.3), hildon-desktop-mono-loader
 Description: CLI bindings for libhildondesktop
  CLI binding for libhildondesktop
@@ -15,6 +15,6 @@ Description: CLI bindings for libhildondesktop
 Package: hildon-desktop-mono-loader
 Section: libs
 Architecture: any
-Depends: hildon-desktop, mono-runtime, ${misc:Depends}
+Depends: hildon-desktop, mono-runtime (= 2.0.1-1), ${misc:Depends}
 Description: Hildon Desktop Mono Plugin Loader
  Plugin Loader for Hildon Desktop for loading mono plugins
