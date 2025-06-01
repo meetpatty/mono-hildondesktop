@@ -57,7 +57,7 @@ if test "x$have_mono" != "xno"; then
         # Hack to compile targeting arm as we cannot link against the mono devkit's i386 libs 
         case "$host" in
             arm*)
-                MONO_LIBS=`echo "$MONO_LIBS" | sed 's|-L\S*/devkits/mono\S*/lib|-L'"$ac_abs_confdir"'/libmono_armel|g'`
+                MONO_LIBS=`echo "$MONO_LIBS" | sed 's|-L\S*/devkits/mono\S*/lib|-L'"$ac_abs_confdir"'/loader/libmono_armel|g'`
                 ;;
         esac
 
