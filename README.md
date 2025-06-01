@@ -11,6 +11,10 @@ and the Mono devkit installed.\
 NOTE that testing C# plugins on the `DIABLO_ARMEL` target is not supported as the
 Mono runtime is provided as an i386 devkit and cannot be embedded in an arm process.\
 \
+From the host run:
+```sh
+sudo chmod ugo+w /scratchbox/devkits/mono
+```
 From the `DIABLO_X86` target run:
 ```sh
 ./autogen.sh
@@ -66,7 +70,7 @@ X-Path=TestPlugin.dll
 ### To compile and install run 
 ```sh 
 mcs TestPlugin.cs `pkg-config --libs libhildondesktop-sharp` -target:library
-cp TestPlugin.dll `pkg-config hildon-desktop --variable=hildondesktoplibdir`
+cp TestPlugin.dll `pkg-config --variable=hildondesktoplibdir hildon-desktop`
 cp TestPlugin.desktop `pkg-config --variable=homedesktopentrydir osso-af-settings`
 ```
 
